@@ -1,3 +1,18 @@
+const navMenu = document.getElementById('sidebar'),
+      navToggle = document.getElementById('nav-toggle'),
+      navClose = document.getElementById('nav-close')
+
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.add('show-sidebar');
+    })
+}
+
+if (navClose) {
+    navClose.addEventListener('click', () => {
+        navMenu.classList.remove('show-sidebar');
+    })
+}
 
 const tabs = document.querySelectorAll('[data-target]'),
     tabContent = document.querySelectorAll('[data-content]')
@@ -119,3 +134,25 @@ inputs.forEach((input) => {
     input.addEventListener("focus", focusFunc);
     input.addEventListener("blur", blurFunc);
 })
+
+
+const sections = document.querySelectorAll("section[id]");
+
+window.addEventListener("scroll", navHighlighter);
+
+function navHighlighter() {
+    let scrollY = window.pageYOffset;
+
+    sections.forEach(current  => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 50,
+        sectionId = current.getAttribute("id");
+
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            document.querySelector(".nav__menu a[href*=" + sectionId + "]").classList.add("active-link");
+        }
+        else {
+            document.querySelector(".nav__menu a[href*=" + sectionId + "]").classList.remove("active-link");
+        }
+    })
+}
