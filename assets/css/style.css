@@ -1469,6 +1469,10 @@ textarea.input {
         grid-template-columns: 300px;
     }
 
+    .work__filters {
+        column-gap: .10rem;
+    }
+
     .footer__container {
         grid-template-columns: 1fr;
     }    
